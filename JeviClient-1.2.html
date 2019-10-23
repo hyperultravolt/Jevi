@@ -1,0 +1,66 @@
+<script>
+	alert("Jevi 클라이언트 - 실행시작");
+	Entry.block.add_value_to_list.func = function(e, t) {
+		var n = t.getField('LIST', t),
+		o = t.getValue('VALUE', t),
+		r = Entry.variableContainer.getList(n, e);
+		return r.array_ || (r.array_ = []), r.array_.push({
+			data: o
+		}), $.get(`%0/?cod=push&_id=${Entry.projectId}&varName=${r.name_}&data=${o}&type=list`, function(data){}), r.updateView(), t.callReturn()
+	};
+
+	Entry.block.set_variable.func = function(t,e){
+		var n = e.getField("VARIABLE",e),
+		o = e.getValue("VALUE",e),
+		r = Entry.variableContainer.getVariable(n,t);
+		return $.get(`%0/?cod=push&_id=${Entry.projectId}&varName=${r.name_}&data=${o}&type=var`, function(data){}),
+		e.callReturn()
+	}
+
+  Entry.block.remove_value_from_list.func=function(t, e) {
+    const listId = e.getField('LIST', e);
+    const value = e.getValue('VALUE', e);
+    const list = Entry.variableContainer.getList(listId, t);
+
+    if (
+        !list.array_ ||
+        !Entry.Utils.isNumber(value) ||
+        value > list.array_.length
+    ) {
+        throw new Error('can not remove value from array');
+    }
+
+    list.array_.splice(value - 1, 1);
+    list.updateView();
+    return $.get(`%0/?cod=pop&_id=${Entry.projectId}&varName=${list.name_}&data=${value}&type=list`, function(data){}),
+    e.callReturn();
+  }
+  
+	setInterval(function() {
+		var cont = Entry.variableContainer.getListByName('JVset');
+		var getOpt = [];
+		var type = 'list';
+		for(var i = 0; i < cont.array_.length; i++){
+			getOpt = cont.array_[i].data.split(' ');
+			if(getOpt.length>1){
+				type=(getOpt[1]=="-v")?"var":"list";
+			}else{
+				if(Entry.variableContainer.getVariableByName(getOpt[0])){
+					type="var";
+				}else{
+					type="list";
+				}
+			}
+
+			if(type=="list"){
+				$.get(`%0/?cod=get&type=${type}&_id=${Entry.projectId}&varName=${getOpt[0]}`, function(_d) {
+					Entry.variableContainer.getListByName(_d.result.varn).setArray(_d.basic.concat(_d.result._data));
+				});
+			}else if(type=="var"){
+				$.get(`%0/?cod=get&type=${type}&_id=${Entry.projectId}&varName=${getOpt[0]}`, function(_d) {
+					Entry.variableContainer.getVariableByName(_d.result.varn).setValue(_d.result._data[_d.basic[3].data][_d.result.varn]);
+				});
+			}
+		}
+	}, 1000);
+</script>
