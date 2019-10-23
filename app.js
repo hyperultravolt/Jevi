@@ -64,7 +64,11 @@ app.get('/', (req, res) => {
 
 		}
 		if(req.query.cod == "delete"){
-			
+			if(req.query.data>stor[req.query._id + '_' + req.query.varName].length){
+				throw new Error('can not remove value from array');
+			}else{
+				stor[req.query._id + '_' + req.query.varName].splice(value - 1, 1);
+			}
 		}
 		if(req.query.type == "list"){
 			ret._data = stor[req.query._id + '_' + req.query.varName];	
