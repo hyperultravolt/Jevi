@@ -63,7 +63,7 @@ app.get('/', (req, res) => {
 			//console.log(req.query);
 
 		}
-		if(req.query.cod == "delete"){
+		if(req.query.cod == "pop"){
 			if(req.query.data>stor[req.query._id + '_' + req.query.varName].length){
 				throw new Error('can not remove value from array');
 			}else{
