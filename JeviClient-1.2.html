@@ -33,7 +33,7 @@
     list.array_.splice(value - 1, 1);
     list.updateView();
     return $.get(`%0/?cod=pop&_id=${Entry.projectId}&varName=${list.name_}&data=${value}&type=list`, function(data){}),
-    e.callReturn();
+    e.callReturn()
   }
   
 	setInterval(function() {
