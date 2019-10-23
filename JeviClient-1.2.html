@@ -6,14 +6,14 @@
 		r = Entry.variableContainer.getList(n, e);
 		return r.array_ || (r.array_ = []), r.array_.push({
 			data: o
-		}), $.get(`%0/?cod=push&_id=${Entry.projectId}&varName=${r.name_}&data=${o}&type=list`, function(data){}), r.updateView(), t.callReturn()
+		}), $.get(`%0?cod=push&_id=${Entry.projectId}&varName=${r.name_}&data=${o}&type=list`, function(data){}), r.updateView(), t.callReturn()
 	};
 
 	Entry.block.set_variable.func = function(t,e){
 		var n = e.getField("VARIABLE",e),
 		o = e.getValue("VALUE",e),
 		r = Entry.variableContainer.getVariable(n,t);
-		return $.get(`%0/?cod=push&_id=${Entry.projectId}&varName=${r.name_}&data=${o}&type=var`, function(data){}),
+		return $.get(`%0?cod=push&_id=${Entry.projectId}&varName=${r.name_}&data=${o}&type=var`, function(data){}),
 		e.callReturn()
 	}
 
@@ -32,7 +32,7 @@
 
     list.array_.splice(value - 1, 1);
     list.updateView();
-    return $.get(`%0/?cod=pop&_id=${Entry.projectId}&varName=${list.name_}&data=${value}&type=list`, function(data){}),
+    return $.get(`%0?cod=pop&_id=${Entry.projectId}&varName=${list.name_}&data=${value}&type=list`, function(data){}),
     e.callReturn()
   }
   
@@ -53,11 +53,11 @@
 			}
 
 			if(type=="list"){
-				$.get(`%0/?cod=get&type=${type}&_id=${Entry.projectId}&varName=${getOpt[0]}`, function(_d) {
+				$.get(`%0?cod=get&type=${type}&_id=${Entry.projectId}&varName=${getOpt[0]}`, function(_d) {
 					Entry.variableContainer.getListByName(_d.result.varn).setArray(_d.basic.concat(_d.result._data));
 				});
 			}else if(type=="var"){
-				$.get(`%0/?cod=get&type=${type}&_id=${Entry.projectId}&varName=${getOpt[0]}`, function(_d) {
+				$.get(`%0?cod=get&type=${type}&_id=${Entry.projectId}&varName=${getOpt[0]}`, function(_d) {
 					Entry.variableContainer.getVariableByName(_d.result.varn).setValue(_d.result._data[_d.basic[3].data][_d.result.varn]);
 				});
 			}
