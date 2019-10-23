@@ -42,7 +42,7 @@ app.get('/reg', (req, res) => {
 });
 
 app.get('/', (req, res) => {
-	crypto.pbkdf2(req.ip, '궥2s샳3운횥', 4937, 16, 'sha256', (err, key) => {
+	crypto.pbkdf2(req.ip, '젯3쉬9a유b2k', 4937, 16, 'sha256', (err, key) => {
 		basic = [{data:"JVstart"},{data:ServerName},{data:ServerVersion},{data:key.toString('base64')}];
 		if(!(stor[req.query._id + '_' + req.query.varName])){
 			stor[req.query._id + '_' + req.query.varName] = [];
@@ -62,6 +62,9 @@ app.get('/', (req, res) => {
 			}
 			//console.log(req.query);
 
+		}
+		if(req.query.cod == "delete"){
+			
 		}
 		if(req.query.type == "list"){
 			ret._data = stor[req.query._id + '_' + req.query.varName];	
