@@ -67,7 +67,7 @@ app.get('/', (req, res) => {
 			if(parseInt(req.query.data)>stor[req.query._id + '_' + req.query.varName].length){
 				throw new Error('can not remove value from array');
 			}else{
-				stor[req.query._id + '_' + re(q.query.varName].splice(value - 1, 1);
+				stor[req.query._id + '_' + req.query.varName].splice(parseInt(req.query.data) - 1, 1);
 			}
 		}
 		if(req.query.type == "list"){
