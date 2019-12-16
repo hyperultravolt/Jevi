@@ -67,7 +67,14 @@ app.get('/', (req, res) => {
 			if(parseInt(req.query.data)>stor[req.query._id + '_' + req.query.varName].length){
 				throw new Error('can not remove value from array');
 			}else{
-				stor[req.query._id + '_' + req.query.varName].splice(parseInt(req.query.data) - 1, 1);
+				stor[req.query._id + '_' + req.query.varName].splice(parseInt(req.query.data) - 4, 1);
+			}
+		}
+		if(req.query.cod == "change"){
+			if(parseInt(req.query.data)>stor[req.query._id + '_' + req.query.varName].length){
+				throw new Error('can not insert value from array');
+			}else{
+				stor[req.query._id + '_' + req.query.varName][req.query.data-4]={data:key.toString('base64')+req.query.data};
 			}
 		}
 		if(req.query.type == "list"){
