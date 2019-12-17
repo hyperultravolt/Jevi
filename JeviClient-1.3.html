@@ -51,8 +51,8 @@
 
                     list.array_[index - 1].data = data;
                     list.updateView();
-                    return return $.get(`%0?cod=change&_id=${Entry.projectId}&varName=${list.name_}&data=${data}&data2=${index}&type=list`, function(data){}),
-	       script.callReturn();
+                    return $.get(`%0?cod=change&_id=${Entry.projectId}&varName=${list.name_}&data=${data}&data2=${index}&type=list`, function(data){}),
+	       	    script.callReturn();
                 }
   
 	setInterval(function() {
