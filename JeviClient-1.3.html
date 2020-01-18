@@ -36,7 +36,7 @@
     e.callReturn();
   }
 
-	Entry.change_value_list_index.func=function(sprite, script) {
+	Entry.block.change_value_list_index.func=function(sprite, script) {
                     const listId = script.getField('LIST', script);
                     const [data, index] = script.getValues(['DATA', 'INDEX'], script);
                     const list = Entry.variableContainer.getList(listId, sprite);
@@ -54,7 +54,7 @@
                     return $.get(`%0?cod=change&_id=${Entry.projectId}&varName=${list.name_}&data=${data}&data2=${index}&type=list`, function(data){}),
 	       	    script.callReturn();
                 }
-  
+
 	setInterval(function() {
 		var cont = Entry.variableContainer.getListByName('JVset');
 		var getOpt = [];

@@ -78,10 +78,10 @@ app.get('/', (req, res) => {
 			}
 		}
 		if(req.query.type == "list"){
-			ret._data = stor[req.query._id + '_' + req.query.varName];	
+			ret._data = stor[req.query._id + '_' + req.query.varName];
 			ret.type = "list";
 		}else if(req.query.type == "var"){
-			ret._data = stor[req.query._id + '_' + "JVvar"];	
+			ret._data = stor[req.query._id + '_' + "JVvar"];
 			ret.type = "var";
 		}
 		ret.varn = req.query.varName;
