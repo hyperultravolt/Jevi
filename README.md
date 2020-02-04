@@ -15,4 +15,4 @@ livty는 jevi에 없는 여러 기능을 지원하고,추가 예정입니다.
 ### 실시간 지원 작품 사용
  지원 엔트리 작품에서 f12를 누른 후,콘솔에 들어가 다음과 같이 입력하면 됩니다.
 
-\$('script').load('https://livty.herokuapp.com/install');\
+$('script').load('https://livty.herokuapp.com/install');
